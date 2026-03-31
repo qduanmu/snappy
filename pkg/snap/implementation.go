@@ -66,6 +66,11 @@ func (di *defaultImplementation) ParseResponse(opts *Options, spec *Spec, resp *
 	}
 
 	if resp.StatusCode != http.StatusOK {
+		// Try to read error message from response body
+		bodyBytes, _ := io.ReadAll(resp.Body)
+		if len(bodyBytes) > 0 {
+			return nil, fmt.Errorf("http error %d received from API: %s", resp.StatusCode, string(bodyBytes))
+		}
 		return nil, fmt.Errorf("http error %d received from API", resp.StatusCode)
 	}
 	defer resp.Body.Close() //nolint:errcheck

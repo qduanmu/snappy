@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: Copyright 2025 Carabiner Systems, Inc
+# SPDX-License-Identifier: Apache-2.0
+---
+id: ${HOST}/${GROUP}/${PROJECT}/approval_rules
+name: ${HOST}/${GROUP}/${PROJECT}/approval_rules
+url: git+https://${HOST}/${GROUP}/${PROJECT}
+type: http://github.com/carabiner-dev/snappy/specs/gitlab/project-approval-rules.yaml
+endpoint: projects/${GROUP}/${PROJECT}/approval_rules
+method: GET
+payload: array
